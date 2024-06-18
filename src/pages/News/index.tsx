@@ -21,8 +21,6 @@ const News = () => {
   const [loading, setLoading] = useState<boolean | null>(null)
   const [titleFilterPage, setTitleFilterPage] = useState<string>('')
 
-  const convertParamsFilter:string | undefined = params.filter_name?.toLowerCase()
-  
   useEffect(() => {
     let paramsToUrl:string
     if(params && params.filter_name){
