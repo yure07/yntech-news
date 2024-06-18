@@ -89,7 +89,9 @@ const News = () => {
     <section className="flex flex-col self-center w-4/5 sm:w-1/2 my-8 
       ">
       
-        {data && (
+        {(!data || loading) ? (
+          <div> Carregando... </div>
+        ) : (
           <section className="flex flex-col items-center font-montserrat">
             <article className="flex flex-col px-4 sm:px-8 pb-4 md:pb-7 mb-4 border-b">
               <h1 className="text-xl sm:text-h2 font-bold">{data?.title}</h1>
