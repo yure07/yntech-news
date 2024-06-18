@@ -21,15 +21,6 @@ Após certficar que possui [Node.js](https://nodejs.org/en/) e [VSCode](https://
 ### Instale as dependências
 `npm install`
 
-## Configuração de ambiente
-Este projeto usa um arquivo .env para gerenciar variável de ambiente, siga as instruções para configurá-la:
-
-- Crie um arquivo chamado `.env` na raiz do projeto
-
-- Copie o conteúdo do arquivo `.env.example` e cole no novo arquivo `.env`.
-
-- Insira o valor real da API_KEY
-
 ### Execute a aplicação
 `npm start`
 
