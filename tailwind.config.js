@@ -16,10 +16,12 @@ module.exports = {
         'montserrat': ['Montserrat', 'sans-serif']
       },
       fontSize: {
+        'max-font': '39px',
         'h1': '30px',
         'h2': '26px',
         'h3': '15px',
-        'small': '10px'
+        'small': '10px',
+        'extra-small': '8px'
       },
       width: {
         'max-desktop': '1060px',
@@ -42,4 +44,3 @@ module.exports = {
   },
   plugins: [],
 }
-

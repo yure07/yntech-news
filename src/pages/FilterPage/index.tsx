@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Params, useParams } from "react-router-dom"
+import { Link, Params, useParams, useNavigate } from "react-router-dom"
 import { CiSearch } from "react-icons/ci"
 import { IoBookOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
@@ -30,18 +29,21 @@ const FilterPage = () => {
   const [data, setData] = useState<ApiDataEverything[] | null>(null)
   const [loading, setLoading] = useState<boolean | null>(null)
   const [titleFilterPage, setTitleFilterPage] = useState<string>('')
+  const [paramsToUrl, setParamsToUrl] = useState<string>('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     let paramsToUrl:string
     if(params && params.name) {
       const divide = params.name.split('=')
       paramsToUrl = divide[0]
+      setParamsToUrl(divide[0])
       setTitleFilterPage(UpperFirstLetter(divide[1]))
     }
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://newsapi.org/v2/everything?q=${paramsToUrl}&language=pt&pageSize=15&apiKey=70e9af5b0a974ff9ab5d5eba4f2419a4`);
+        const response = await fetch(`https://newsapi.org/v2/everything?q=${paramsToUrl}&language=pt&pageSize=15&apiKey=7150186ffe9e4f64b960b37a59285c9d`);
         if (!response.ok) {
           throw new Error('Erro na requisição');
         }
@@ -54,6 +56,10 @@ const FilterPage = () => {
 
     fetchData();
   },[titleFilterPage, params])
+
+  const handleClick = (newsTitle: string) => {
+    navigate(`/news/${newsTitle}/${titleFilterPage}=${paramsToUrl}`)
+  }
 
   return(
     <>
@@ -94,11 +100,15 @@ const FilterPage = () => {
     </article>
 
     <article className="flex flex-col mx-auto items-center mt-8 w-4/5">
-      {data?.slice(0, 5).map((news) => (
-        (news.urlToImage !== null) &&
+      {(loading || !data) ? ( 
+        <div>Carregando...</div> 
+      ) :(
+      data?.slice(0, 5).map((news) => (
+        (news.urlToImage !== null && !news.title.includes('%')) &&
         <section key={news.url} 
           className="flex flex-col md:flex-row lg:w-max-desktop lg:justify-between px-5 py-5 
-            mb-5 shadow-2xl cursor-pointer">
+            mb-5 shadow-2xl cursor-pointer"
+          onClick={() => handleClick(news.title)}>
           <article className="flex flex-col md:flex-col-reverse mb-5 md:mb-0 md:mr-4 md:self-center 
             lg:w-custom-image lg:h-48 lg:justify-between">
             <p className="text-h3 text-secondary-light">{convertData(news.publishedAt)}</p>
@@ -106,7 +116,7 @@ const FilterPage = () => {
           </article>
           <img src={news.urlToImage} alt="img-news" className="w-full md:w-72 lg:w-80 lg:h-56"/>
         </section>
-      ))}
+      )))}
     </article>
     </>
   )

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { ApiDataEverything } from "../../types"
 import HeaderHome from "../../components/HeaderHome"
 import CardNewsMain from "../../components/CardNewsMain"
@@ -6,27 +7,28 @@ import CardsNewsAside from "../../components/CardsNewsAside"
 
 const convertData = (isoDate: string) => {
   const date = new Date(isoDate);
-
+  
   const months = [
     "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
     "Jul", "Ago", "Set", "Out", "Nov", "Dez"
   ];
-
+  
   const day = date.getDate();
   const month = months[date.getMonth()];
   const year = date.getFullYear();
-
+  
   return `${month}, ${day}, ${year}`;
 }
 
 const Home = () => {
   const [data, setData] = useState<ApiDataEverything[] | null>(null)
   const [loading, setLoading] = useState<boolean | null>(null)
-
+  const navigate = useNavigate()
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://newsapi.org/v2/everything?q=general&language=pt&pageSize=15&apiKey=70e9af5b0a974ff9ab5d5eba4f2419a4');
+        const response = await fetch(`https://newsapi.org/v2/everything?q=general&language=pt&pageSize=15&apiKey=7150186ffe9e4f64b960b37a59285c9d`);
         if (!response.ok) {
           throw new Error('Erro na requisição');
         }
@@ -39,6 +41,10 @@ const Home = () => {
 
     fetchData();
   },[])
+
+  const handleClick = (newsTitle: string) => {
+    navigate(`/news/${newsTitle}/Geral`)
+  }
 
  return(
   <main>
@@ -56,7 +62,9 @@ const Home = () => {
           <section className="flex flex-col w-4/5 lg:mt-20">
             <h1 className="text-xl font-bold">Mais lidas da semana:</h1>
             {data.slice(1, 4).map((news) => (
-              <section className="flex flex-col md:flex-row xl:justify-between md:h-72 my-4 py-4 md:py-12 px-4 md:px-8 shadow-2xl">
+              <section className="flex flex-col md:flex-row xl:justify-between 
+                md:h-72 my-4 py-4 md:py-12 px-4 md:px-8 shadow-2xl cursor-pointer"
+                onClick={() => handleClick(news.title)}>
                 <article className="flex flex-col md:flex-col-reverse md:justify-between md:py-3">
                   <p className="text-h3 text-secondary-light">{convertData(news.publishedAt)}</p>
                   <h1 className="text-2xl font-bold">{news.title}</h1>
