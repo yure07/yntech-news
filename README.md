@@ -34,3 +34,19 @@ Este projeto usa um arquivo .env para gerenciar variável de ambiente, siga as i
 `npm start`
 
 ### O servidor iniciará na porta:3000 - acesse <http://localhost:3000>
+
+## Exemplos de chamadas à API
+
+No local `pages>home>index.tsx` há uma chamada à API usando o fetch, que trará as notícias da categoria Geral em português, usando a url: `https://newsapi.org/v2/everything?q=general&language=pt&pageSize=15&apiKey=${process.env.API_KEY}`.
+
+O parâmetro `q=general` na url configura a requisição para trazer apenas notícias dessa categoria (geral).
+
+Portanto, ele pode ser trocado para qualquer outra categoria existente na aplicação:
+- business (negócios)
+- entertainment (entretenimento)
+- health (saúde)
+- science (ciêcncia)
+- sports (esportes)
+- technology (tecnologia)
+
+Em toda aplicação a url se mantém praticamente a mesma, a única diferença será nesse parâmetro, para obter o tipo certo de notícia
