@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { ApiDataEverything } from "../../types"
-import { MouseEventHandler } from "react";
 
 interface NewsType{
   news: ApiDataEverything
