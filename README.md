@@ -42,7 +42,7 @@ Portanto, ele pode ser trocado para qualquer outra categoria existente na aplica
 
 Em toda aplicação a url se mantém praticamente a mesma, a única diferença será nesse parâmetro, para obter o tipo certo de notícia.
 
-## Diferancial
+## Diferencial
 O Input presente no cabeçalho é funcional.
 Busque por empresas e o site trará notícias sobre essa empresa, possuindo uma vasta gama de empresa, dentre elas:
 - Apple
