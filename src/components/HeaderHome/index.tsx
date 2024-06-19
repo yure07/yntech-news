@@ -49,30 +49,6 @@ const HeaderHome = () => {
           <Link to="/filter/technology=tecnologia" className="text-[#8F0479] cursor-pointer">Tecnologia</Link>
         </ul>
       </nav>
-      
-      {/* <nav className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col items-center justify-center 
-        bg-primary-light w-auto xl:h-11.5 lg:h-11.5 md:h-28 sm:h-28 md:gap-y-4 sm:gap-y-4">
-        <div className="flex flex-row items-center">
-          <IoBookOutline className="xl:text-h2 lg:text-h2 md:text-h3 text-purple"/>
-          <h3 className="xl:mx-10 lg:mx-10 md:ml-2 sm:ml-2 font-montserrat font-bold text-secondary-light 
-            xl:text-h3 lg:text-h3 md:text-xs sm:text-xs">Selecione um filtro:</h3>
-        </div>
-        <div className="flex flex-row items-center lg:text-h3 md:text-xs">
-          <Link to="/" className="text-[#9F1515] cursor-pointer">Negócios</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#BF9B1A] cursor-pointer">Entretenimento</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#820475] cursor-pointer">Saúde</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#01EBFA] cursor-pointer">Geral</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#0B07D2] cursor-pointer">Ciência</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#0CC508] cursor-pointer">Esportes</Link>
-          <div className="w-px h-4 mx-3 bg-secondary-light"></div>
-          <Link to="/" className="text-[#8F0479] cursor-pointer">Tecnologia</Link>
-        </div>
-      </nav> */}
     </article>
   )
 }
