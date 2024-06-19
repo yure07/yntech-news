@@ -40,4 +40,13 @@ Portanto, ele pode ser trocado para qualquer outra categoria existente na aplica
 - sports (esportes)
 - technology (tecnologia)
 
-Em toda aplicação a url se mantém praticamente a mesma, a única diferença será nesse parâmetro, para obter o tipo certo de notícia
+Em toda aplicação a url se mantém praticamente a mesma, a única diferença será nesse parâmetro, para obter o tipo certo de notícia.
+
+## Diferancial
+O Input presente no cabeçalho é funcional.
+Busque por empresas e o site trará notícias sobre essa empresa, possuindo uma vasta gama de empresa, dentre elas:
+- Apple
+- Samsung
+- Amazon
+- Coca Cola
+- Ambev
