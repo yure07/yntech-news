@@ -1,8 +1,20 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { IoBookOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+
+const UpperFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 const HeaderHome = () => {
+  const [company, setCompany] = useState<string>('')
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(`/filter/${UpperFirstLetter(company)}=${company}`)
+  }
+
   return(
     <article className="flex flex-col w-screen h-56 md:h-38 bg-purple">
       <section className="flex flex-row items-center justify-center self-center 
@@ -10,9 +22,11 @@ const HeaderHome = () => {
         <Link to='/' className="font-bold font-montagu text-h2 text-white 
           ml-12 md:ml-0 md:abosolute left-1/2">YnTech News</Link>
         <input type="text" 
-          className="hidden w-57.5 h-9.5 ml-8 md:ml-16 bg-purple-dark 
-          rounded-xl-plus md:flex absolute right-8"/>
-        <CiSearch className="text-white text-h2 ml-8 md:absolute right-12"/>
+          className="hidden w-57.5 h-9.5 px-4 ml-8 md:ml-16 bg-purple-dark 
+          text-white rounded-xl-plus md:flex absolute right-8"
+          onChange={(e) => setCompany(e.target.value)}/>
+        <CiSearch className="text-white text-h2 ml-8 md:absolute right-12 cursor-pointer"
+          onClick={handleClick}/>
       </section>
 
       <nav className="flex flex-col md:flex-row items-center justify-between md:justify-center sm:justify-evenly

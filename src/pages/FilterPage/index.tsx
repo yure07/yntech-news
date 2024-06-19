@@ -30,6 +30,7 @@ const FilterPage = () => {
   const [loading, setLoading] = useState<boolean | null>(null)
   const [titleFilterPage, setTitleFilterPage] = useState<string>('')
   const [paramsToUrl, setParamsToUrl] = useState<string>('')
+  const [companyInput, setCompanyInput] = useState<string>('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -57,8 +58,12 @@ const FilterPage = () => {
     fetchData();
   },[titleFilterPage, params])
 
-  const handleClick = (newsTitle: string) => {
+  const handleClickCard = (newsTitle: string) => {
     navigate(`/news/${newsTitle}/${titleFilterPage}=${paramsToUrl}`)
+  }
+
+  const handleClickInput = () => {
+    navigate(`/filter/${companyInput}=${companyInput}`)
   }
 
   return(
@@ -73,9 +78,14 @@ const FilterPage = () => {
         <h2 className="font-bold font-montagu text-h2 text-white md:mr-12">{titleFilterPage}</h2>
         <input type="text" 
           className="hidden w-48 h-9.5 bg-purple-dark 
-          text-white px-2 rounded-xl-plus md:block"/>
+          text-white px-4 rounded-xl-plus md:block"
+          onChange={(e) => setCompanyInput(e.target.value)}
+        />
       </section>
-      <CiSearch className="text-white md:text-purple md:right-10 text-h1 absolute top-10 right-6"/>
+      <CiSearch className="text-white md:text-purple md:right-10 text-h1 absolute 
+        top-10 right-6 cursor-pointer"
+        onClick={handleClickInput}
+      />
 
       <nav className="flex flex-col md:flex-row items-center justify-between md:justify-center sm:justify-evenly
         w-screen h-28 md:h-11.5 py-4 bg-primary-light">
@@ -104,11 +114,11 @@ const FilterPage = () => {
         <div>Carregando...</div> 
       ) :(
       data?.slice(0, 5).map((news) => (
-        (news.urlToImage !== null && !news.title.includes('%')) &&
+        (news.urlToImage !== null && !news.title.includes('%') && !news.title.includes('?')) &&
         <section key={news.url} 
           className="flex flex-col md:flex-row lg:w-max-desktop lg:justify-between px-5 py-5 
             mb-5 shadow-2xl cursor-pointer"
-          onClick={() => handleClick(news.title)}>
+          onClick={() => handleClickCard(news.title)}>
           <article className="flex flex-col md:flex-col-reverse mb-5 md:mb-0 md:mr-4 md:self-center 
             lg:w-custom-image lg:h-48 lg:justify-between">
             <p className="text-h3 text-secondary-light">{convertData(news.publishedAt)}</p>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { CiSearch } from "react-icons/ci"
 import { IoArrowBackCircle, IoBookOutline } from "react-icons/io5"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { ApiDataEverything } from "../../types"
 
 const convertData = (isoDate: string) => {
@@ -16,10 +16,12 @@ const convertData = (isoDate: string) => {
 
 const News = () => {
   const params = useParams()
+  const navigate = useNavigate()
 
   const [data, setData] = useState<ApiDataEverything | null>(null)
   const [loading, setLoading] = useState<boolean | null>(null)
   const [titleFilterPage, setTitleFilterPage] = useState<string>('')
+  const [companyInput, setCompanyInput] = useState<string>('')
 
   useEffect(() => {
     let paramsToUrl:string
@@ -47,6 +49,10 @@ const News = () => {
     fetchData();
   },[])
 
+  const handleClickInput = () => {
+    navigate(`/filter/${companyInput}=${companyInput}`)
+  }
+
  return(
   <main className="flex flex-col">
     <article className="flex flex-col w-screen h-56 md:h-38 bg-purple">
@@ -59,9 +65,14 @@ const News = () => {
         <h2 className="font-bold font-montagu text-h2 text-white md:mr-12">{titleFilterPage}</h2>
         <input type="text" 
           className="hidden w-48 h-9.5 bg-purple-dark 
-          text-white px-2 rounded-xl-plus md:block"/>
+          text-white px-4 rounded-xl-plus md:block"
+          onChange={(e) => setCompanyInput(e.target.value)}
+        />
       </section>
-      <CiSearch className="text-white md:text-purple md:right-10 text-h1 absolute top-10 right-6"/>
+      <CiSearch className="text-white md:text-purple md:right-10 text-h1 absolute 
+        top-10 right-6 cursor-pointer"
+        onClick={handleClickInput}
+      />
 
       <nav className="flex flex-col md:flex-row items-center justify-between md:justify-center sm:justify-evenly
         w-screen h-28 md:h-11.5 py-4 bg-primary-light">
