@@ -43,7 +43,7 @@ const Home = () => {
   },[])
 
   const handleClick = (newsTitle: string) => {
-    navigate(`/news/${newsTitle}/Geral`)
+    navigate(`/news/${newsTitle}/Geral=general`)
   }
 
  return(
@@ -62,7 +62,7 @@ const Home = () => {
           <section className="flex flex-col w-4/5 lg:mt-20">
             <h1 className="text-xl font-bold">Mais lidas da semana:</h1>
             {data.slice(1, 4).map((news) => (
-              <section className="flex flex-col md:flex-row xl:justify-between 
+              <section key={news.title} className="flex flex-col md:flex-row xl:justify-between 
                 md:h-72 my-4 py-4 md:py-12 px-4 md:px-8 shadow-2xl cursor-pointer"
                 onClick={() => handleClick(news.title)}>
                 <article className="flex flex-col md:flex-col-reverse md:justify-between md:py-3">

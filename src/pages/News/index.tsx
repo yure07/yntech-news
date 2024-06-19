@@ -35,6 +35,7 @@ const News = () => {
           throw new Error('Erro na requisição');
         }
         const result = await response.json();
+        console.log(paramsToUrl)
         result.articles.map((news: ApiDataEverything) => {
           if(news.title === params.title) setData(news)
         })
